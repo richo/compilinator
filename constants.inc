@@ -13,8 +13,8 @@
 (define bool_mask     31)
 (define char_shift     8)
 
-(define null_list_tag  47)
-(define null_list_mask 47)
+(define null_list_tag  45)
+(define null_list_mask 45)
 
 
 #|
@@ -33,8 +33,8 @@
 #define bool_mask     31
 #define bool_shift     8
 
-#define null_list_tag  47
-#define null_list_mask 47
+#define null_list_tag  45
+#define null_list_mask 45
 
 ;;/*
 |#
