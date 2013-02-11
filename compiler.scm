@@ -1,8 +1,7 @@
 (define x86-prelude
 "  .section	__TEXT,__text,regular,pure_instructions
-	.globl	_scheme_entry
+	.globl	~a
 	.align	4, 0x90
-_scheme_entry:
 ")
 
 (define finale
@@ -26,6 +25,5 @@ _scheme_entry:
        )))
 
 (define (compile-program x)
-    (emit x86-prelude)
     (emit "movl $~a, %eax~n" (immediate-rep x))
     (emit "ret~n"))
