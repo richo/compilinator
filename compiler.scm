@@ -10,7 +10,14 @@ _scheme_entry:
 
 (define emit printf)
 
+(define immediate-rep
+  (lambda (x)
+    (cond
+      ((integer? x)
+       (arithmetic-shift x fixnum_shift)
+       ))))
+
 (define (compile-program x)
     (emit x86-prelude)
-    (emit "movl $~a, %eax~n" x)
+    (emit "movl $~a, %eax~n" (immediate-rep x))
     (emit "ret~n"))
