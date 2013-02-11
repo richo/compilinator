@@ -22,6 +22,8 @@
        (char->immediaterep x))
       ((and (string? x) (eq? (string-length x) 1))
        (char->immediaterep (char->integer (string-ref x 0))))
+      ((eq? x '())
+       null_list_tag)
        )))
 
 (define (compile-program x)
