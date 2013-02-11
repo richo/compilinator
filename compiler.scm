@@ -12,6 +12,12 @@
 (define (char->immediaterep x)
   (bitwise-ior (arithmetic-shift (char->integer x) char_shift) char_tag))
 
+(define (immediate? x)
+  (or (integer? x)
+      (char? x)
+      (and (string? x) (eq? (string-length x) 1))
+      (eq? x '())))
+
 
 (define immediate-rep
   (lambda (x)
@@ -27,5 +33,7 @@
        )))
 
 (define (compile-program x)
-    (emit "movl $~a, %eax~n" (immediate-rep x))
-    (emit "ret~n"))
+  (cond
+    ((immediate? x)
+      (emit "movl $~a, %eax~n" (immediate-rep x))
+      (emit "ret~n"))))
