@@ -10,12 +10,20 @@ _scheme_entry:
 
 (define emit printf)
 
+(define (char->immediaterep x)
+  (bitwise-ior (arithmetic-shift (char->integer x) char_shift) char_tag))
+
+
 (define immediate-rep
   (lambda (x)
     (cond
       ((integer? x)
-       (arithmetic-shift x fixnum_shift)
-       ))))
+       (arithmetic-shift x fixnum_shift))
+      ((char? x)
+       (char->immediaterep x))
+      ((and (string? x) (eq? (string-length x) 1))
+       (char->immediaterep (char->integer (string-ref x 0))))
+       )))
 
 (define (compile-program x)
     (emit x86-prelude)

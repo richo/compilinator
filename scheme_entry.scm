@@ -1,4 +1,4 @@
 (require "./compiler")
 (include "./constants.inc")
 
-(compile-program 42)
+(compile-program #\f)
