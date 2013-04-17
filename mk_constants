@@ -1,0 +1,14 @@
+#!/bin/sh
+cat $1 | while read key value; do
+[ -n "$key" ] && [ -n "$value" ] &&
+cat <<EOL
+;;/*
+(define $key $value)
+#|
+;;*/
+#define $key $value
+;;/*
+|#
+;;*/
+EOL
+done > $2

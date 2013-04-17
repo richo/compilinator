@@ -3,6 +3,8 @@ GCC_OPTS = -m32
 
 all: main
 
+constants.inc: constants.in
+	./mk_constants constants.in constants.inc
 
 main: scheme_entry.so constants.inc scheme_entry.c
 	gcc ${GCC_OPTS} -Wall scheme_entry.c scheme_entry.so -o main
